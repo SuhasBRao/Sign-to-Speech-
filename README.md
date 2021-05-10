@@ -12,7 +12,7 @@ The solution to these problems is an efficient sign language interpreter which c
 ## Literature survey
 ---
 - [Real-Time Recognition of Indian Sign Language](https://ieeexplore.ieee.org/document/8862125)
-- [https://ieeexplore.ieee.org/document/7275945](https://ieeexplore.ieee.org/document/7275945)
+- [Continuous dynamic Indian Sign Language gesture recognition with invariant backgrounds](https://ieeexplore.ieee.org/document/7275945)
 - [Machine learning Techniques for Indian Sign Language Recognition](https://ieeexplore.ieee.org/document/8454988)
 - [Real time Conversion of Sign Language using Deep Learning for Programming Basics](https://ieeexplore.ieee.org/document/9087272)
 
