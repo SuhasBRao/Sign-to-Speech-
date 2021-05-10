@@ -17,6 +17,7 @@ The solution to these problems is an efficient sign language interpreter which c
 - [Real time Conversion of Sign Language using Deep Learning for Programming Basics](https://ieeexplore.ieee.org/document/9087272)
 
 Above are few of the papers our team referred to do this project. We have also referred several other Conference papers.
+**Also you can refer this article [Sign language recognition using Python and Opencv](https://data-flair.training/blogs/sign-language-recognition-python-ml-opencv/)**
 
 ## Description
 ---
@@ -26,7 +27,7 @@ Sequential model with three *Convo2D* layers, three *MaxPool2D* layers and three
 
 ***Dataset can be downloaded from [here](https://www.kaggle.com/vaishnaviasonawane/indian-sign-language-dataset)***.
 
-## Strucure of repo.
+## Strucure of repo
 ---
 The repository contains the following structure.
 - Model_train.ipynb - This notebook shows how to access dataset stored on google drive, And using that dataset model is trained.This is a colab notebook which can be found [here](https://colab.research.google.com/drive/12ZQg_yHc-8uY9rgvOIgnwd6rkYONUhV8?usp=sharing). However you *cannot run it here as it requires permission while accessing dataset from the drive*.
@@ -35,7 +36,7 @@ The repository contains the following structure.
 ![Webcam capture](/images/Webcamcapture.png)
 ![Hand image](/images/fg.png)
 
-## Future Work.
+## Future Work
 ---
 At this point of time the model is able to recognize gestures from static images. The prediction is above 95% accurate for static inputs(images). We are working to produce a system which can recognize gestures shown by user in real time.
 Image is captured from webcam and only the hand reagion of that image is given as input for the model. The model must recognize the sign.
