@@ -25,7 +25,7 @@ while True:
     cv2.putText(frame_copy, "Now you can gesture", (80, 400), 
     cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0,255,0), 2)
                    
-    cv2.imwrite('roi.jpg',roi)
+    cv2.imwrite('C:/Users/suhas/GIT_HUB/Sign-to-Speech-/images/roi.jpg',roi)
 
     # incrementing the number of frames for tracking
     num_frames += 1
