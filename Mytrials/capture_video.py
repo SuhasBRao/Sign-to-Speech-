@@ -18,7 +18,7 @@ while True:
 
     frame_copy = frame.copy()
 
-    # ROI from the frame
+    # ROI from the framez
     
     roi = frame[ROI_top:ROI_bottom, ROI_right:ROI_left]
     
