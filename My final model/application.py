@@ -187,17 +187,16 @@ def classify():
     original = cv2.imread(image_data)
     thresholded = cv2.resize(original, (64, 64))
     
-    thresholded = np.reshape(thresholded,
-
-(1,thresholded.shape[0],thresholded.shape[1],3))
+    thresholded = np.reshape(thresholded,(1,thresholded.shape[0],thresholded.shape[1],3))
 
     pred = model.predict(thresholded)
-    
+        
     string = text_to_speak[np.argmax(pred) + 1]
 
     table = tk.Label(frame, text="Predicted sign ").pack()
 
     result = tk.Label(frame, text= string.upper()).pack()
+
 
 model = tf.keras.models.load_model('C:\\Users\\suhas\\GIT_HUB\\Sign-to-Speech-\\My final model\\new_words_model.h5')
 
