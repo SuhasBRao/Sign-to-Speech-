@@ -38,6 +38,7 @@ Sequential model with three *Convo2D* layers, three *MaxPool2D* layers and three
 ---
 The repository contains the following structure.
 - README.md - This is a markdown file which contains details about the project.
+- My final model
 
 <!--[Webcam capture](/images/Webcamcapture.png)
 ![Hand image](/images/fg.png) -->
