@@ -45,6 +45,6 @@ The repository contains the following structure.
 
 ## Future Work
 ---
-At this point of time the model is able to recognize gestures from static images. The prediction is above 95% accurate for static inputs(images). We are working to produce a system which can recognize gestures shown by user in real time.
+At this point of time the model is able to recognize gestures from static images. The prediction is above 89% accurate for static inputs(images). We are working to produce a system which can recognize gestures shown by user in real time.
 Image is captured from webcam and only the hand reagion of that image is given as input for the CNN model. The model must recognize the sign.
 We are still working to capture the hand region from live webcam.
