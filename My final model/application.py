@@ -1,3 +1,18 @@
+'''
+Note: Before running this file make sure you have installed the necessary modules. 
+See the list of modules below.
+############################################
+List of required modules:
+1. tensorflow
+2. numpy
+3. opencv
+4. pyttsx3
+5. matplotlib
+6. tkinter
+7. PIL
+'''
+
+
 import os   # accessing folder paths
 import numpy as np
 import matplotlib.pyplot as plt
@@ -8,9 +23,9 @@ import pyttsx3
 import tkinter as tk
 from PIL import ImageTk, Image
 from tkinter import filedialog
-import numpy as np
+
 import tensorflow as tf
-import cv2
+
 
 num_classes = {1:'1',2:'2',3:'3', 4:'4', 5:'5', 6:'6', 7:'7', 8:'8',
            9:'9'}
@@ -198,7 +213,7 @@ def classify():
     result = tk.Label(frame, text= string.upper()).pack()
 
 
-model = tf.keras.models.load_model('C:\\Users\\suhas\\GIT_HUB\\Sign-to-Speech-\\My final model\\new_words_model.h5')
+model = tf.keras.models.load_model('C:\\Users\\suhas\\GIT_HUB\\Sign-to-Speech-\\My final model\\alpha_model.h5')
 
 text_to_speak = {1:'All The Best', 2:'Hello', 3: 'I Love you', 4: 'No', 5:'Super!!', 6:'Yes'} # used to speak the sign
 text_to_speak_numbers = num_classes
