@@ -37,11 +37,9 @@ Sequential model with three *Convo2D* layers, three *MaxPool2D* layers and three
 ## Strucure of repo
 ---
 The repository contains the following structure.
-- Model_train.ipynb - This notebook shows how to access dataset stored on google drive, And using that dataset model is trained.This is a colab notebook which can be found [here](https://colab.research.google.com/drive/12ZQg_yHc-8uY9rgvOIgnwd6rkYONUhV8?usp=sharing). However you *cannot run it here as it requires permission while accessing dataset from the drive*.
 - README.md - This is a markdown file which contains details about the project.
-- Video capture.ipynb - This notebook shows how to access the webcam to capture hand region.
-<!--[Webcam capture](/images/Webcamcapture.png)
-![Hand image](/images/fg.png) -->
+- Main scripts - This folder contains the main script files which can be used to either generate the model or for prediction with the model.
+- Mytrials - This folder contains the files which which were used while training the model and also for testing the codes.
 
 ## Future Work
 ---

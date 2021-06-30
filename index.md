@@ -32,13 +32,13 @@ The recognition of the sign language is done using a CNN(Convolutional Neural Ne
 Sequential model with three *Convo2D* layers, three *MaxPool2D* layers and three dense layers with *relu* activation funcion has been used. The output Dense layer has softmax activation function with 35 neurons.
 [Adam](https://keras.io/api/optimizers/adam/) optimizer with [categorical crossentropy](https://www.tensorflow.org/api_docs/python/tf/keras/losses/CategoricalCrossentropy) loss function is used. The model is then trained for 10 epochs.
 
-***Dataset can be downloaded from [here](https://www.kaggle.com/vaishnaviasonawane/indian-sign-language-dataset)***.
 
 ## Strucure of repo
 ---
 The repository contains the following structure.
 - README.md - This is a markdown file which contains details about the project.
-- My final model
+- Main scripts - This folder contains the main script files which can be used to either generate the model or for prediction with the model.
+- Mytrials - This folder contains the files which which were used while training the model and also for testing the codes.
 
 <!--[Webcam capture](/images/Webcamcapture.png)
 ![Hand image](/images/fg.png) -->
