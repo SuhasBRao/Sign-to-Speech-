@@ -30,7 +30,7 @@ Above are few of the papers our team referred to do this project. We have also r
 ---
 The recognition of the sign language is done using a CNN(Convolutional Neural Network) model which is trained on a dataset containing 35 classes among which 26 are for alphabets and remaining are for numbers. The dataset was obtained from [Kaggle](https://www.kaggle.com/datasets). Tensorflow has been utilized to train the model.
 Sequential model with three *Convo2D* layers, three *MaxPool2D* layers and three dense layers with *relu* activation funcion has been used. The output Dense layer has softmax activation function with 35 neurons.
-[Adam](https://keras.io/api/optimizers/adam/) optimizer with [categorical crossentropy](https://www.tensorflow.org/api_docs/python/tf/keras/losses/CategoricalCrossentropy) loss function is used. The model is then trained for 10 epochs.
+[Adam](https://keras.io/api/optimizers/adam/) optimizer with [categorical crossentropy](https://www.tensorflow.org/api_docs/python/tf/keras/losses/CategoricalCrossentropy) loss function is used. The model is then trained for 10 epochs. The model was later trained for 25 epochs and got more accuracy.
 
 
 ## Strucure of repo
