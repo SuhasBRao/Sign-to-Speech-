@@ -1,4 +1,4 @@
-<title>Sign to Speech Converter</title>
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="assets/style.css" >
 
