@@ -10,14 +10,19 @@
   background-image: linear-gradient(to right,#ccc,#095484,#ccc);
 }
 .btn {
-  background-color: DodgerBlue;
-  border: none;
-  color: white;
-  padding: 5px 10px;
-  font-size: 16px;
-  cursor: pointer;
-}
-/* Darker background on mouse-over */
-.btn:hover {
-  background-color: RoyalBlue;
-}
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 12px;
+  }
+  .btn {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+  /* Darker background on mouse-over */
+  .btn:hover {
+    background-color: RoyalBlue;
+    transform: scale3d(1.09,1.09,1.09);
+  }
