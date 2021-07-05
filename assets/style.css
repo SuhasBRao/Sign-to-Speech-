@@ -2,28 +2,31 @@
 ---
 
 @import "{{ site.theme }}";
-
 h2 {
-  font-size: 26px;
+  font-size: 20px;
   font-family: 'Roboto Mono', monospace;
+  color: #293B5F;
 }
 
 h3{
-  font-size: 20px;
+  font-size: 16px;
   font-family: 'Lato', sans-serif;
+  color:#39A9CB;
   
 }
 p {
-  font-size: 18px;
-  
+  font-size: 14px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-
 .hr1{
   border:0;
   height: 3px;
-  background: #095484;
-  background-image: linear-gradient(to right,#ccc,#095484,#ccc);
+  
+  background: #A2DBFA;
+  /*background: -webkit-linear-gradient(25deg, #FF94CC, #A239EA); */
+  
+  background: linear-gradient(to right,#A2DBFA, #5C33F6,#A2DBFA)
+  /*background-image: linear-gradient(to right,#ccc,#095484,#ccc);*/
 }
 .btn {
     background-color: DodgerBlue;
