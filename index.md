@@ -49,7 +49,22 @@ Above are few of the papers our team referred to do this project. We have also r
 **Also you can refer this article [Sign language recognition using Python and Opencv](https://data-flair.training/blogs/sign-language-recognition-python-ml-opencv/)**
 
 <h2>Glimpse of the Application<h2>
-<img src="assets/apps home page.png" alt="apps home page " width=150 height=150>
-<img src="assets/image.png" alt="image loading" width=150 height=150>
-<img src="assets/classify.png" alt="image classification " width=150 height=150>
-<img src="assets/live.png" alt="live prediction " width=150 height=150>
+
+<div class="window">
+      <span id="slide-1"></span>
+      <span id="slide-2"></span>
+      <span id="slide-3"></span>
+      <span id="slide-4"></span>
+      <div class="image-container">
+        <img src="assets/apps home page.png" alt="apps home page " class="slide">
+        <img src="assets/image.png" alt="image loading" class="slide">
+        <img src="assets/classify.png" alt="image classification " class="slide">
+        <img src="assets/live.png" alt="live prediction " class="slide">
+      </div>
+      <div class="button-container">
+        <a href="#slide-1" class="slider-button"></a>
+        <a href="#slide-2" class="slider-button"></a>
+        <a href="#slide-3" class="slider-button"></a>
+        <a href="#slide-4" class="slider-button"></a>
+      </div>
+</div>
