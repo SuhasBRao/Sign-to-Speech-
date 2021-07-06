@@ -13,9 +13,10 @@
 <h2>Description</h2>
 <hr>
 The recognition of the sign language is done using a CNN(Convolutional Neural Network) model which is trained on a dataset containing 35 classes among which 26 are for alphabets and remaining are for numbers. A custom Dataset was created for training purposes. Tensorflow has been utilized to train the model.
-Below images show the foreground extraction from frames (which was used for dataset creation).
+<br>Below images show the foreground extraction from frames (which was used for dataset creation).
 
-<img src="assets/Hand.png" alt="Hand">
+<img src="assets/Hand.png" alt="Hand" width=150 height=150>
+<img src="assets/Binary hand.png" alt="binary image " width=150 height=150>
 
 Sequential model with three *Convo2D* layers, three *MaxPool2D* layers and three dense layers with *relu* activation funcion has been used. The output Dense layer has softmax activation function with 35 neurons.
 [Adam](https://keras.io/api/optimizers/adam/) optimizer with [categorical crossentropy](https://www.tensorflow.org/api_docs/python/tf/keras/losses/CategoricalCrossentropy) loss function is used. The model is then trained for 10 epochs. The model was later trained for 25 epochs and got more accuracy.
@@ -47,4 +48,8 @@ We are still working to capture the hand region from live webcam.
 Above are few of the papers our team referred to do this project. We have also referred several other Conference papers.
 **Also you can refer this article [Sign language recognition using Python and Opencv](https://data-flair.training/blogs/sign-language-recognition-python-ml-opencv/)**
 
-<h2>
+<h2>Glimpse of the Application<h2>
+<img src="assets/apps home page.png" alt="apps home page " width=150 height=150>
+<img src="assets/image.png" alt="image loading" width=150 height=150>
+<img src="assets/classify.png" alt="image classification " width=150 height=150>
+<img src="assets/live.png" alt="live prediction " width=150 height=150>
