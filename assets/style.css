@@ -57,7 +57,7 @@ p {
   }
   
   .image-container {
-    width: 2250px;
+    width: 2000px;
     height: 150px;
     position: relative;
     transition: left 2s;
