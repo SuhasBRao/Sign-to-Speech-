@@ -45,9 +45,7 @@ p {
     background-color: RoyalBlue;
     transform: scale3d(1.09,1.09,1.09);
   }
-  img {
-    padding: 10px;
-  }
+  
 
   .window {
     width: 300px;
