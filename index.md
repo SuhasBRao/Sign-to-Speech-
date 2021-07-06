@@ -56,10 +56,10 @@ Above are few of the papers our team referred to do this project. We have also r
       <span id="slide-3"></span>
       <span id="slide-4"></span>
       <div class="image-container">
-        <img src="assets/apps home page.png" alt="apps home page " class="slide">
-        <img src="assets/image.png" alt="image loading" class="slide">
-        <img src="assets/classify.png" alt="image classification " class="slide">
-        <img src="assets/live.png" alt="live prediction " class="slide">
+        <img src="assets/apps home page.png" alt="apps home page " weight=150 height=150 class="slide">
+        <img src="assets/image.png" alt="image loading" weight=150 height=150 class="slide">
+        <img src="assets/classify.png" alt="image classification " weight=150 height=150 class="slide">
+        <img src="assets/live.png" alt="live prediction " weight=150 height=150 class="slide">
       </div>
       <div class="button-container">
         <a href="#slide-1" class="slider-button"></a>
