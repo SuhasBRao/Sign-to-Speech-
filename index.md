@@ -48,23 +48,3 @@ We are still working to capture the hand region from live webcam.
 Above are few of the papers our team referred to do this project. We have also referred several other Conference papers.
 **Also you can refer this article [Sign language recognition using Python and Opencv](https://data-flair.training/blogs/sign-language-recognition-python-ml-opencv/)**
 
-<h2>Glimpse of the Application<h2>
-
-<div class="window">
-      <span id="slide-1"></span>
-      <span id="slide-2"></span>
-      <span id="slide-3"></span>
-      <span id="slide-4"></span>
-      <div class="image-container">
-        <img src="assets/apps home page.png" alt="apps home page "  weight=300 height=300 class="slide">
-        <img src="assets/image.png" alt="image loading"  weight=300 height=300 class="slide">
-        <img src="assets/classify.png" alt="image classification "  weight=300 height=300 class="slide">
-        <img src="assets/live.png" alt="live prediction " weight=300 height=300 class="slide">
-      </div>
-      <div class="button-container">
-        <a href="#slide-1" class="slider-button"></a>
-        <a href="#slide-2" class="slider-button"></a>
-        <a href="#slide-3" class="slider-button"></a>
-        <a href="#slide-4" class="slider-button"></a>
-      </div>
-</div>
