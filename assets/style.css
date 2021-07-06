@@ -82,7 +82,7 @@ p {
     height: 10px;
     width: 10px;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: rgb(36, 48, 216);
   }
   
   #slide-1:target ~ .image-container {
