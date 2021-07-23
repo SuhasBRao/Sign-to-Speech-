@@ -34,9 +34,8 @@ The repository contains the following structure.
 
 <h2>Future Work</h2>
 <hr>
-At this point of time the model is able to recognize gestures from static images. The prediction is above 89% accurate for static inputs(images). We are working to produce a system which can recognize gestures shown by user in real time.
-Image is captured from webcam and only the hand reagion of that image is given as input for the CNN model. The model must recognize the sign.
-We are still working to capture the hand region from live webcam.
+The model is currently capable to recognize the gestures of numbers, alphabets and few words of Indian Sign langauge. The accuracy is about 89%, Image is captured from webcam and only the hand reagion of that image is given as input for the CNN model. The model recognizes the gesture.
+However the system works fine for plain background, the accuracy of the system drops drasticaaly for variant backgrouns. The future works may focus on making the system background invariant.
 
 <h2>References</h2> 
 <hr>
