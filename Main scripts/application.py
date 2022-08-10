@@ -1,4 +1,13 @@
 '''
+Main python script that creates an interactive screen and allows the user to either
+show gestures as live action or to upload a pre-existing image (Black and white) for
+prediction.
+There are mainly 3 types of predictions
+[1] number prediction - we use numbers_model.h5 
+[2] alphabet prediction - we use alpha_model.h5
+[3] words prediction - we use best_model.h5
+Respective model files are loaded based on what the user wants to predict.
+
 Note: Before running this file make sure you have installed the necessary modules. 
 See the list of modules below.
 ############################################
@@ -10,10 +19,10 @@ List of required modules:
 5. matplotlib
 6. tkinter
 7. PIL
-
 '''
 
-
+################################################################################
+##################### Import Necessary models ##################################
 import os   # accessing folder paths
 import numpy as np
 import matplotlib.pyplot as plt
@@ -26,24 +35,35 @@ from PIL import ImageTk, Image
 from tkinter import filedialog
 
 import tensorflow as tf
-
-
+################################################################################
+##### Creating a dictionary that is later used for prediction #################
+# The dictionary contains three classes 
+# [1] num_classes - used for number prediction
+# [2] alpha_classes - used for alphabet prediction
+# [3] words_class - used for word prediction
 num_classes = {1:'1',2:'2',3:'3', 4:'4', 5:'5', 6:'6', 7:'7', 8:'8',
            9:'9'}
 alpha_classes = {1:'A',2:'B',3:'C',4:'D',5:'E',6:'F',7:'G',8:'H',9:'I',
            10:'J',11:'K',12:'L',13:'M',14:'N',15:'O',16:'P',17:'Q',18:'R',19:'S',20:'T',21:'U',
            22:'V',23:'W',24:'X',25:'Y',26:'Z'}
 
-words_data = {1:'All_The_Best', 2:'Hi!!', 3: 'I_Love_you', 4: 'No', 5:'Super!!', 6:'Yes'}
+words_class = {1:'All_The_Best', 2:'Hi!!', 3: 'I_Love_you', 4: 'No', 5:'Super!!', 6:'Yes'}
+################################################################################
 
+########## Few necessary variables ##############
 background = None
 accumulated_weight = 0.7
 mask_color = (0.0,0.0,0.0)
 
+# During Live prediction we need a portion of the screen 
+# where the user can show the gestures. 
+# This portion is Region of Interest(ROI). 
+# Here we set the boundary for ROI in pixels.
 ROI_top = 100
 ROI_bottom = 300
 ROI_right = 300
 ROI_left = 500
+#################################################
 
 # This function is used to calculate accumulated_weights in the frame
 def cal_accum_avg(frame, accumulated_weight):
@@ -94,10 +114,23 @@ def segment_hand(frame, threshold=50):
     return (thresholded, hand_segment_max_cont, contour_info)
 
 def predict():
+    '''
+    This function is used for live predcition, When the user shows gestures
+    Directly to the camera. 
+    The gestures predicted are show on screen as well
+    as are said aloud as speech.
+    ####################################################################
+    If you want to stop the live camera press 'esc' key during run time.
+    ####################################################################
+    '''
+    global text_to_speak, model
     
     cam = cv2.VideoCapture(0)
     num_frames =0
     pred = None
+    
+    # Below loop reads live gestures from the camera and tries to predict.
+    # One can use Esc key to close the live camera 
     while True:
         ret, frame = cam.read()
 
@@ -114,7 +147,9 @@ def predict():
         gray_frame = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
         gray_frame = cv2.GaussianBlur(gray_frame, (9, 9), 0)
 
-
+        # We fetch the background from initial 70 frames 
+        # After 70 frames, during prediction we subtract his background from 
+        # every frame to get the foreground gesture
         if num_frames < 70:
             
             cal_accum_avg(gray_frame, accumulated_weight)
@@ -132,19 +167,17 @@ def predict():
                 thresholded, hand_segment,contour_info = hand
 
                 # Drawing contours around hand segment
-                cv2.drawContours(frame_copy, [hand_segment + (ROI_right,
-        ROI_top)], -1, (255, 0, 0),1)
+                cv2.drawContours(frame_copy, [hand_segment + (ROI_right,ROI_top)], -1, (255, 0, 0),1)
                 
                 cv2.imshow("Thesholded Hand Image", thresholded)
                 
                 thresholded = cv2.resize(thresholded, (64, 64))
-                thresholded = cv2.cvtColor(thresholded,
-    cv2.COLOR_GRAY2RGB)
-                thresholded = np.reshape(thresholded,
-    (1,thresholded.shape[0],thresholded.shape[1],3))
+                thresholded = cv2.cvtColor(thresholded,cv2.COLOR_GRAY2RGB)
+                thresholded = np.reshape(thresholded,(1,thresholded.shape[0],thresholded.shape[1],3))
 
                 prev = text_to_speak[np.argmax(pred) + 1]
                 pred = model.predict(thresholded)
+                
                 #print(pred)
                 cv2.putText(frame_copy, text_to_speak[np.argmax(pred) + 1],
     (300, 45), cv2.FONT_HERSHEY_SCRIPT_SIMPLEX, 1, (0,0,255), 2)
@@ -167,12 +200,12 @@ def predict():
             
 
         # Display the frame with segmented hand
-        cv2.putText(frame_copy, "Indian sign language recognition_ _ _",
-        (10, 20), cv2.FONT_ITALIC, 0.5, (51,255,51), 1)
+        cv2.putText(frame_copy, "Indian sign language recognition_ _ _",(10, 20), 
+                    cv2.FONT_ITALIC, 0.5, (51,255,51), 1)
         cv2.imshow("Sign Detection", frame_copy)
 
 
-        # Close windows with Esc
+        # Close window with Esc
         k = cv2.waitKey(1) & 0xFF
 
         if k == 27:
@@ -199,7 +232,8 @@ def load_img():
     panel = tk.Label(frame, text= str(file_name[len(file_name)-1]).upper()).pack()
     panel_image = tk.Label(frame, image=img).pack()
 
-def classify():
+def classify_loaded_image():
+    global model
     original = cv2.imread(image_data)
     thresholded = cv2.resize(original, (64, 64))
     
@@ -213,40 +247,71 @@ def classify():
 
     result = tk.Label(frame, text= string.upper()).pack()
 
+def what_to_predict():
+    print('What do you want to predict? \n')
+    print("[1] Numbers \n[2] Words \n[3] Alphabets.")
+    user_choice = int(input('Enter 1 , 2 or 3 \n'))
+    matching_dict = {1:'Numbers', 2:'Words', 3:'Alphabets'}
+    user_choice_name = matching_dict[user_choice]
+    return user_choice_name
 
-model = tf.keras.models.load_model('C:\\Users\\suhas\\GIT_HUB\\Sign-to-Speech-\\My final model\\alpha_model.h5')
-
-text_to_speak = {1:'All The Best', 2:'Hello', 3: 'I Love you', 4: 'No', 5:'Super!!', 6:'Yes'} # used to speak the sign
-text_to_speak_numbers = num_classes
-text_to_speak_alpha = alpha_classes
-
-root = tk.Tk()
-root.title('Sign predictor')
-#root.iconbitmap('class.ico')
-root.resizable(False, False)
-
-tit = tk.Label(root, text="Sign predictor", padx=25, pady=6, font=("", 12)).pack()
-
-canvas = tk.Canvas(root, height=400, width=600, bg='#76c3fb')
-canvas.pack()
-
-frame = tk.Frame(root, bg='#d776fb')
-frame.place(relwidth=0.8, relheight=0.7, relx=0.1, rely=0.1)
-
-chose_image = tk.Button(root, text='Choose Image',
-                        padx=20, pady=10,
-                        fg="white", bg="#8c04b5", command=load_img)
-chose_image.pack(side=tk.LEFT)
-
-live_pred = tk.Button(root, text='Live prediction',
-                        padx=20, pady=10,
-                        fg="white", bg="#0a7c2e",command=predict)
-live_pred.pack(side=tk.RIGHT)
-
-class_image = tk.Button(root, text='Classify Image',
-                            padx=20, pady=10,
-                            fg="white", bg="#0475b5",command=classify)
-class_image.pack(side=tk.LEFT)
+# {
+# Driver Code starts
+################################################################################################################
+if __name__ == "__main__":
     
- 
-root.mainloop()
+    # Loading pre-trained model based on user choice and assign the expected 
+    # text_to_speak at the same time.
+    # The text_to_speak is used by pyttsx3 at run time to speak out the
+    # predicted sign.
+    user_choice = what_to_predict()
+    if user_choice == "Numbers":
+        model = tf.keras.models.load_model('Main scripts\\numbers_model.h5')
+        text_to_speak = num_classes
+        
+    elif user_choice == "Words":
+        model = tf.keras.models.load_model('Main scripts\\best_model.h5')
+        text_to_speak = words_class
+    
+    elif user_choice == "Alphabets":
+        model = tf.keras.models.load_model('Main scripts\\alpha_model.h5')
+        text_to_speak = alpha_classes
+        
+
+    ##########################################################################################
+    ################ We create an interactive window using Tkinter library ###################
+    root = tk.Tk()
+    root.title('Sign predictor')
+    
+    root.resizable(False, False)
+
+    tit = tk.Label(root, text="Sign predictor", padx=25, pady=6, font=("", 12)).pack()
+
+    canvas = tk.Canvas(root, height=400, width=600, bg='#76c3fb')
+    canvas.pack()
+
+    frame = tk.Frame(root, bg='#d776fb')
+    frame.place(relwidth=0.8, relheight=0.7, relx=0.1, rely=0.1)
+
+    load_image_btn = tk.Button(root, text='Load Image',
+                            padx=20, pady=10,
+                            fg="white", bg="#8c04b5", command=load_img)
+    load_image_btn.pack(side=tk.LEFT)
+
+    live_predcition_btn = tk.Button(root, text='Live prediction',
+                            padx=20, pady=10,
+                            fg="white", bg="#0a7c2e",command=predict)
+    live_predcition_btn.pack(side=tk.RIGHT)
+
+    classify_btn = tk.Button(root, text='Classify loaded Image',
+                                padx=20, pady=10,
+                                fg="white", bg="#0475b5",command=classify_loaded_image)
+    classify_btn.pack(side=tk.LEFT)
+        
+    
+    root.mainloop()
+    ###########################################################################################
+    
+################################################################################################################
+# } Driver Code ends
+
