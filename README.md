@@ -17,7 +17,8 @@ Sign-to-Speech tries to overcome that gap.
 
 ## Description
 ---
-The recognition of the sign language is done using a CNN(Convolutional Neural Network) model which is trained on a dataset containing 41 classes among which 26 classes are for alphabets, 6 classes for words and remaining are for numbers. 
+The recognition of the sign language is done using a **CNN(Convolutional Neural Network)** model which is trained on a dataset containing ***41 classes
+among which 26 classes are for alphabets, 6 classes for words and remaining are for numbers***. 
 A custom dataset has been generated and the code for the same is available in *CNN model.ipynb* file.
 
 A sample pic of the dataset generated is shown below.
@@ -65,4 +66,4 @@ Here are few things You can work on
 - Try with other algorithms like SVM, K nearest neighbor etc.
 - To build a web version of the project(For this you need to consider the application.py file )
 
-Feel free to modify the project and open a Pull request. I'll merge it the project.
+Feel free to modify the project and open a Pull request.
