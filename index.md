@@ -66,6 +66,5 @@ Here are few things You can work on
 
 Feel free to modify the project and open a Pull request.
 
-Above are few of the papers our team referred to do this project. We have also referred several other Conference papers.
 **Also you can refer this article [Sign language recognition using Python and Opencv](https://data-flair.training/blogs/sign-language-recognition-python-ml-opencv/)**
 
