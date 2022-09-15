@@ -46,13 +46,18 @@ Sequential model with
 [Adam](https://keras.io/api/optimizers/adam/) optimizer with [categorical crossentropy](https://www.tensorflow.org/api_docs/python/tf/keras/losses/CategoricalCrossentropy) loss function is used. The model is then trained for 10 epochs.
 
 
-## Strucure of repo
+## Strucure of repository
 ---
 The repository contains the following structure.
 - README.md - This is a markdown file which contains details about the project.
 - Main scripts - This folder contains the main script files which can be used to either generate the model or for prediction with the model.
 - Mytrials - This folder contains the files which which were used while training the model and also for testing the codes.
-- other files - Files lke _config.yml , index.md etc are used by github-pages
+
+
+## Testing the converter
+---
+If you just want to try out the sign-to-speech converter on your system. Just download the directory [Main scripts](./Main%20scripts/)
+and run [application.py](./Main%20scripts/application.py). 
 
 
 ## Contribution
