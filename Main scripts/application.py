@@ -245,18 +245,25 @@ def classify_loaded_image():
     result = tk.Label(frame, text= string.upper()).pack()
 
 def what_to_predict():
-    print('What do you want to predict? \n')
+    print()
+    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    print('What do you want to predict?')
     print("[1] Numbers \n[2] Words \n[3] Alphabets.")
-    user_choice = int(input('Enter 1 , 2 or 3 \n'))
+    user_choice = int(input('Enter 1 , 2 or 3: '))
     matching_dict = {1:'Numbers', 2:'Words', 3:'Alphabets'}
+    if user_choice not in matching_dict.keys():
+        print("Invalid choice !!")
+        sys.exit()
     user_choice_name = matching_dict[user_choice]
     return user_choice_name
 
-def check_for_model_file(file_name):
-    file_exists = os.path.exists("Main scripts\\Trained Models\\" + file_name)
-    print(file_exists)
-    if not file_exists:
-        raise file_name + "Not Found. Please ensure the model file is present in Trained models dir!!"
+def check_for_model_file(list_of_files):
+    
+    for file_name in list_of_files:
+        file_exists = os.path.exists("Main scripts\\Trained Models\\" + file_name)
+        if not file_exists:
+            print("..............................................")
+            raise FileNotFoundError(file_name)
     return None
              
 # {
@@ -268,20 +275,27 @@ if __name__ == "__main__":
     # text_to_speak at the same time.
     # The text_to_speak is used by pyttsx3 at run time to speak out the
     # predicted sign.
+    try:
+        check_for_model_file(["numbers_model.h5", "best_model.h5", "alpha_model.h5"])
+    except FileNotFoundError as e:
+        print()
+        print(e)
+        print("Model (.h5) file was not found in Trained Models directory. !!")
+        print(".................................................")
+        sys.exit()
+    
+
     user_choice = what_to_predict()
     
     if user_choice == "Numbers":
-        check_for_model_file("numbers_model.h5")
         model = tf.keras.models.load_model('Main scripts\\Trained Models\\numbers_model.h5')
         text_to_speak = num_classes
         
     elif user_choice == "Words":
-        check_for_model_file("best_model.h5")
         model = tf.keras.models.load_model('Main scripts\\Trained Models\\best_model.h5')
         text_to_speak = words_class
     
     elif user_choice == "Alphabets":
-        check_for_model_file("alpha_model.h5")
         model = tf.keras.models.load_model('Main scripts\\Trained Models\\alpha_model.h5')
         text_to_speak = alpha_classes
         
