@@ -7,34 +7,31 @@ There are mainly 3 types of predictions
 [2] alphabet prediction - we use alpha_model.h5
 [3] words prediction - we use best_model.h5
 Respective model files are loaded based on what the user wants to predict.
-
-Note: Before running this file make sure you have installed the necessary modules. 
-See the list of modules below.
-############################################
-List of required modules:
-1. tensorflow
-2. numpy
-3. opencv
-4. pyttsx3
-5. matplotlib
-6. tkinter
-7. PIL
 '''
 
 ################################################################################
 ##################### Import Necessary models ##################################
-import os   # accessing folder paths
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.image as img
-import cv2 
-import pyttsx3
+try:
+    import os   # accessing folder paths
+    import sys
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import matplotlib.image as img
+    import cv2 
+    import pyttsx3
 
-import tkinter as tk
-from PIL import ImageTk, Image
-from tkinter import filedialog
-
-import tensorflow as tf
+    import tkinter as tk
+    from PIL import ImageTk, Image
+    from tkinter import filedialog
+    
+    import tensorflow as tf
+    
+except ModuleNotFoundError as e:
+    print()
+    print(e.name)
+    print("[ERROR] It seems the above module was not found!")
+    sys.exit()
+    
 ################################################################################
 ##### Creating a dictionary that is later used for prediction #################
 # The dictionary contains three classes 
@@ -255,6 +252,13 @@ def what_to_predict():
     user_choice_name = matching_dict[user_choice]
     return user_choice_name
 
+def check_for_model_file(file_name):
+    file_exists = os.path.exists("Main scripts\\Trained Models\\" + file_name)
+    print(file_exists)
+    if not file_exists:
+        raise file_name + "Not Found. Please ensure the model file is present in Trained models dir!!"
+    return None
+             
 # {
 # Driver Code starts
 ################################################################################################################
@@ -265,16 +269,20 @@ if __name__ == "__main__":
     # The text_to_speak is used by pyttsx3 at run time to speak out the
     # predicted sign.
     user_choice = what_to_predict()
+    
     if user_choice == "Numbers":
-        model = tf.keras.models.load_model('Main scripts\\numbers_model.h5')
+        check_for_model_file("numbers_model.h5")
+        model = tf.keras.models.load_model('Main scripts\\Trained Models\\numbers_model.h5')
         text_to_speak = num_classes
         
     elif user_choice == "Words":
-        model = tf.keras.models.load_model('Main scripts\\best_model.h5')
+        check_for_model_file("best_model.h5")
+        model = tf.keras.models.load_model('Main scripts\\Trained Models\\best_model.h5')
         text_to_speak = words_class
     
     elif user_choice == "Alphabets":
-        model = tf.keras.models.load_model('Main scripts\\alpha_model.h5')
+        check_for_model_file("alpha_model.h5")
+        model = tf.keras.models.load_model('Main scripts\\Trained Models\\alpha_model.h5')
         text_to_speak = alpha_classes
         
 
@@ -298,14 +306,16 @@ if __name__ == "__main__":
                             fg="white", bg="#8c04b5", command=load_img)
     load_image_btn.pack(side=tk.LEFT)
 
+
     live_predcition_btn = tk.Button(root, text='Live prediction',
                             padx=20, pady=10,
                             fg="white", bg="#0a7c2e",command=predict)
     live_predcition_btn.pack(side=tk.RIGHT)
 
+
     classify_btn = tk.Button(root, text='Classify loaded Image',
-                                padx=20, pady=10,
-                                fg="white", bg="#0475b5",command=classify_loaded_image)
+                            padx=20, pady=10,
+                            fg="white", bg="#0475b5",command=classify_loaded_image)
     classify_btn.pack(side=tk.LEFT)
         
     
